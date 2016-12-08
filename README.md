@@ -15,6 +15,7 @@ To bootstrap the master VM:
 Once the master has been bootstrapped, you may start worker VMs. To bootstrap those,
 log into the master again, and from there run:
 
+  - Log in to the master, and use ssh-agent forwarding (ssh -A ...)
   - cd /srv/jetstream-pegasus
   - ./bootstrap-worker.sh [WORKERHOSTNAME]
 
