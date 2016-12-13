@@ -12,7 +12,8 @@ cp /srv/jetstream-pegasus/salt/salt/*.conf /etc/salt/minion.d/
 
 cp /srv/jetstream-pegasus/salt/salt/jetstream-pegasus-vm.conf /etc/salt/master.d/
 
-/etc/init.d/salt-master restart
+hostname -f >/etc/salt/minion_id
+systemctl restart salt-master
 
 salt-call state.highstate >/dev/null 2>&1 || true
 if [ -e /etc/salt/pki/master/minions_pre/$HOSTNAME ]; then
@@ -26,5 +27,5 @@ echo "CONDOR_HOST = $HOSTNAME" >/srv/jetstream-pegasus/salt/htcondor/50-master.c
 
 salt-call state.highstate
 
-/etc/init.d/salt-minion restart
+systemctl restart salt-minion
 

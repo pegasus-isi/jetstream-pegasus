@@ -10,6 +10,7 @@ fi
 
 ssh $TARGET_HOST "sudo yum install -y salt-minion && \
                   sudo mkdir -p /etc/salt/minion.d && \
+                  hostname -f | sudo tee /etc/salt/minion_id && \
                   echo 'master: $HOSTNAME' | sudo tee /etc/salt/minion.d/master.conf && \
                   sudo salt-call state.highstate >/dev/null 2>&1 || true"
 
@@ -21,5 +22,5 @@ if [ -e /etc/salt/pki/master/minions_pre/$MINION_ID ]; then
 fi
 
 ssh $TARGET_HOST "sudo salt-call state.highstate && \
-                  sudo /etc/init.d/salt-minion restart"
+                  sudo systemctl restart salt-minion"
 

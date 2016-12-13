@@ -32,3 +32,9 @@ pegasus:
     - require:
       - file: /etc/yum.repos.d/pegasus.repo
 
+vim-enhanced:
+  pkg.installed
+
+pigz:
+  pkg.installed
+

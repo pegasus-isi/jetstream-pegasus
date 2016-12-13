@@ -19,13 +19,13 @@ rynge:
     - require:
       - user: rynge
 
-/home/rynge/.ssh/authorized_keys:
-  file.managed:
-    - user: rynge
-    - group: rynge
-    - mode: 644
-    - template: jinja
-    - source: salt://users/authorized_keys.rynge
+#/home/rynge/.ssh/authorized_keys:
+#  file.managed:
+#    - user: rynge
+#    - group: rynge
+#    - mode: 644
+#    - template: jinja
+#    - source: salt://users/authorized_keys.rynge
 
 #/root/.ssh:
 #  file.directory:

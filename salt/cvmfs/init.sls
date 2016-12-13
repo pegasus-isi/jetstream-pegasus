@@ -26,4 +26,7 @@ autofs:
       - file: /etc/auto.master
       - file: /etc/cvmfs/default.local
 
+/etc/profile.d/z00_lmod.sh:
+  file:
+    - absent
 
