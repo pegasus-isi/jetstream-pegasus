@@ -5,17 +5,33 @@ the pool and from where you will be submitting your workflows. The setup
 consists of a set of SaltStack rules which will install CVMFS, HTCondor and 
 Pegasus. It will also configure SaltStach and HTCondor.
 
-To bootstrap the master VM:
+_To bootstrap the master VM:_
 
   - Base OS should be CentOS 7
-  - Log in to the VM as root
-  - Check out this git repo into /srv/jetstream-pegasus
-  - ./bootstrap-master.sh
+  
+  - Log in to the VM as root using ssh-agent forwarding (ssh -A ...):
+  
+  ```
+  ssh -A root@[ipaddress]
+  ```
+  
+  - Check out this git repo into `/srv/jetstream-pegasus`
 
-Once the master has been bootstrapped, you may start worker VMs. To bootstrap those,
-log into the master again, and from there run:
+  ```
+  cd /srv 
+  git clone https://github.com/pegasus-isi/jetstream-pegasus.git
+  cd jetstream-pegasus
+  ./bootstrap-master.sh
+  ```
+  
+_To bootstrap the worker VM:_
 
-  - Log in to the master, and use ssh-agent forwarding (ssh -A ...)
-  - cd /srv/jetstream-pegasus
-  - ./bootstrap-worker.sh [WORKERHOSTNAME]
-
+ -	Once the master has been bootstrapped, you may start worker VMs. To  bootstrap those,log into the master again, and from there run:
+  
+  ```
+  ssh -A root@[Master's ipaddress]
+  cd /srv/jetstream-pegasus
+  ./bootstrap-worker.sh [WORKER'S ipaddress]
+  ```
+  
+ - Exit and log in as user when your run the Pipeline
