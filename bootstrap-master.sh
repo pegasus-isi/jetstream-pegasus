@@ -25,6 +25,18 @@ salt-call state.highstate
 condor_store_cred -p `uuidgen` -f /srv/jetstream-pegasus/salt/htcondor/pool_password
 echo "CONDOR_HOST = $HOSTNAME" >/srv/jetstream-pegasus/salt/htcondor/50-master.conf
 
+# do we have an extra volume attached?
+if [ -e /vol1 ]; then
+    # if so, let's move HTCondor's work space to it
+    if [ ! -e /vol1/condor ]; then
+        mv /var/lib/condor /vol1/
+        ln -s /vol1/condor /var/lib/condor
+    fi
+    # also need somewhere for users to run workflows from
+    mkdir -p /vol1/scratch
+    chmod 1777 /vol1/scratch
+fi
+
 salt-call state.highstate
 
 systemctl restart salt-minion

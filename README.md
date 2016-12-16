@@ -8,6 +8,7 @@ Pegasus. It will also configure SaltStach and HTCondor.
 To bootstrap the master VM:
 
   - Base OS should be CentOS 7
+  - Attached an extra volume if you need the disk space
   - Log in to the VM as root
   - Check out this git repo into /srv/jetstream-pegasus
   - ./bootstrap-master.sh
