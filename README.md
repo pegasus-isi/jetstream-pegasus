@@ -26,7 +26,8 @@ Alternatively, you can bootstrap the clients by logging in directly to them:
 
   1. As root on the worker, add the necessary packages: `yum install -y salt-minion`
   2. Create `/etc/salt/minion` and add the line `master: [masterhost]`
-  3. Run: `salt-call state.highstate`
-  4. On the master, run `ssh-key -A` and accept the new worker key
+  3. Run: `salt-call state.highstate` - this command will error out saying the
+     key needs to be accepted on the master. Just continue to the next step.
+  4. On the master, run `salt-key -A` and accept the new worker key
   5. On the worker, run `salt-call state.highstate` again
 
